@@ -2,12 +2,12 @@
   "name": "angular2-quickstart",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",    
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
+    "start": "gulp browserify && concurrently \"gulp watch\" \"npm run lite\" ",
+    "watch": "gulp watch",
+    "browserify": "gulp browserify",
     "lite": "lite-server",
     "typings": "typings",
-    "postinstall": "typings install" 
+    "postinstall": "typings install"
   },
   "license": "ISC",
   "dependencies": {
@@ -20,9 +20,13 @@
     "zone.js": "0.5.15"
   },
   "devDependencies": {
+    "browserify": "^13.0.0",
     "concurrently": "^2.0.0",
+    "gulp": "^3.9.1",
     "lite-server": "^2.1.0",
+    "tsify": "^0.13.2",
     "typescript": "^1.8.2",
-    "typings":"^0.6.8"
+    "typings": "^0.6.8",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
