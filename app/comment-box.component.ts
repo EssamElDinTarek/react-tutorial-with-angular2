@@ -28,6 +28,8 @@ export class CommentBoxComponent {
   }
   
   handleCommentSubmit(comment) {
+    comment.id = Date.now();
+    this.comments = this.comments.concat([comment]);
     this._commentService.saveCommentObservable(comment).subscribe(comments => this.comments = comments)
   }  
 }
