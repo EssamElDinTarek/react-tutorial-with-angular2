@@ -11,7 +11,7 @@ import {Comment} from './comment'
     <div className="commentBox">
       <h1>Comments</h1>
       <my-comment-list [comments]="comments"></my-comment-list>
-      <my-comment-form></my-comment-form>
+      <my-comment-form (onCommentSubmit)="handleCommentSubmit($event)"></my-comment-form>
     </div>
     `,
     directives: [CommentListComponent, CommentFormComponent],
@@ -26,4 +26,8 @@ export class CommentBoxComponent {
   ngOnInit() {
     this._commentService.getCommentsObservable().subscribe(comments => this.comments = comments)
   }
+  
+  handleCommentSubmit(comment) {
+    this._commentService.saveCommentObservable(comment).subscribe(comments => this.comments = comments)
+  }  
 }

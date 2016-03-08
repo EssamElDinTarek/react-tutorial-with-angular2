@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Output, EventEmitter} from 'angular2/core';
 
 @Component({
     selector: 'my-comment-form',
@@ -13,15 +13,17 @@ import {Component} from 'angular2/core';
 })
 
 export class CommentFormComponent { 
+  @Output() onCommentSubmit: EventEmitter<any> = new EventEmitter();
+
   public author: string
   public text: string
   
-  handleSubmit(e) {
+  handleSubmit() {
     if (!this.author || !this.text) {
        return;
      }
          
-    // TODO: send request to the server         
+    this.onCommentSubmit.emit({author: this.author, text: this.text})
     this.author = ''
     this.text = ''
   }  
