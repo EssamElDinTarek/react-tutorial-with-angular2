@@ -1,16 +1,18 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {CommentComponent} from './comment.component';
+import {Comment} from './comment'
 
 @Component({
     selector: 'my-comment-list',
     template: 
     `
     <div className="commentList">
-      <my-comment author="Pete Hunt" comment="This is one comment"></my-comment>
-      <my-comment author="Jordan Walke" comment="This is *another* comment"></my-comment>
+      <my-comment *ngFor="#comment of comments" [author]="comment.author" [comment]="comment.text"></my-comment>
     </div>
     `,
     directives: [CommentComponent]
 })
 
-export class CommentListComponent { }
+export class CommentListComponent {
+  @Input() comments: Comment[]
+}
