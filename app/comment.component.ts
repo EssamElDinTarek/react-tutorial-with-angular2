@@ -1,4 +1,5 @@
 import {Component, Input} from 'angular2/core';
+import * as marked from 'marked'
 
 @Component({
     selector: 'my-comment',
@@ -8,7 +9,7 @@ import {Component, Input} from 'angular2/core';
       <h2 className="commentAuthor">
         {{author}}
       </h2>
-      {{comment}}
+      <span [innerHTML]="rawMarkup()"></span>
     </div>
     `
 })
@@ -16,4 +17,8 @@ import {Component, Input} from 'angular2/core';
 export class CommentComponent {
   @Input() author: string
   @Input() comment: string
+  
+  rawMarkup():string {
+    return marked(this.comment, {sanitize: true});
+  }  
 }
